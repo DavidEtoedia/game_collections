@@ -9,7 +9,7 @@ import 'package:game_collections/Data/services/news_service.dart';
 import 'package:game_collections/controller/generic_state_notifier.dart';
 
 part 'games_event.dart';
-// part 'games_state.dart';
+part 'games_state.dart';
 // part 'games_bloc.freezed.dart';
 
 class GamesBloc extends Bloc<GamesEvent, RequestState<Games>> {
@@ -18,15 +18,17 @@ class GamesBloc extends Bloc<GamesEvent, RequestState<Games>> {
   }
 
   final gameRepository = GamesService();
+  final int page = 1;
 
   void _mapEventToState(event, emit) async {
     try {
-      final res = await gameRepository.getGames();
+      emit(const RequestState<Games>.loading());
+      final res = await gameRepository.getGames(page);
       emit(RequestState.success(res));
     } catch (e, s) {
-      RequestState.error(e, s);
+      emit(RequestState<Games>.error(e.toString(), s));
 
-      print(e);
+      // print(e);
     }
   }
 }

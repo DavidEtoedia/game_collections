@@ -25,6 +25,15 @@ class Games {
   String? description;
   Filters? filters;
 
+  static Games empty = Games(
+    count: 0,
+    next: '',
+    previous: 0,
+    results: [],
+    description: '',
+    filters: Filters(years: []),
+  );
+
   factory Games.fromJson(Map<String, dynamic> json) => Games(
         count: json["count"],
         next: json["next"],
@@ -39,7 +48,7 @@ class Games {
         "count": count,
         "next": next,
         "previous": previous,
-        "results": List<dynamic>.from(results!.map((x) => x.toJson())),
+        "results": List<Result>.from(results!.map((x) => x.toJson())),
         "description": description,
         "filters": filters!.toJson(),
       };
@@ -129,7 +138,7 @@ class Result {
     this.slug,
     this.name,
     this.released,
-    this.backgroundImage,
+    required this.backgroundImage,
     this.rating,
     this.ratings,
     this.ratingsCount,
@@ -147,7 +156,6 @@ class Result {
     this.genres,
     this.stores,
     this.tags,
-    this.esrbRating,
     this.shortScreenshots,
   });
 
@@ -155,7 +163,7 @@ class Result {
   String? slug;
   String? name;
   DateTime? released;
-  String? backgroundImage;
+  String backgroundImage;
   double? rating;
   List<Rating>? ratings;
   int? ratingsCount;
@@ -173,7 +181,6 @@ class Result {
   List<Genre>? genres;
   List<Store>? stores;
   List<Genre>? tags;
-  EsrbRating? esrbRating;
   List<ShortScreenshot>? shortScreenshots;
 
   factory Result.fromJson(Map<String, dynamic> json) => Result(
@@ -202,7 +209,6 @@ class Result {
         genres: List<Genre>.from(json["genres"].map((x) => Genre.fromJson(x))),
         stores: List<Store>.from(json["stores"].map((x) => Store.fromJson(x))),
         tags: List<Genre>.from(json["tags"].map((x) => Genre.fromJson(x))),
-        esrbRating: EsrbRating.fromJson(json["esrb_rating"]),
         shortScreenshots: List<ShortScreenshot>.from(
             json["short_screenshots"].map((x) => ShortScreenshot.fromJson(x))),
       );
@@ -232,7 +238,6 @@ class Result {
         "genres": List<dynamic>.from(genres!.map((x) => x.toJson())),
         "stores": List<dynamic>.from(stores!.map((x) => x.toJson())),
         "tags": List<dynamic>.from(tags!.map((x) => x.toJson())),
-        "esrb_rating": esrbRating!.toJson(),
         "short_screenshots":
             List<dynamic>.from(shortScreenshots!.map((x) => x.toJson())),
       };
