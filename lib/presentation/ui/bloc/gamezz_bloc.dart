@@ -3,7 +3,9 @@ import 'package:bloc_concurrency/bloc_concurrency.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:game_collections/Data/model/games.dart';
+import 'package:game_collections/Data/services/exception/game_exception.dart';
 import 'package:game_collections/Data/services/game_service.dart';
+import 'package:game_collections/presentation/ui/Games/bloc/games_bloc.dart';
 import 'package:stream_transform/stream_transform.dart';
 
 part 'gamezz_event.dart';
@@ -17,7 +19,7 @@ EventTransformer<E> throttleDroppable<E>(Duration duration) {
 }
 
 class GamezzBloc extends Bloc<GamezzEvent, GamezzState> {
-  GamezzBloc() : super(const GamezzState()) {
+  GamezzBloc() : super(GamezzState.initial()) {
     on<GamezzFetch>(
       _onFetchGames,
       transformer: throttleDroppable(throttleDuration),
@@ -26,7 +28,7 @@ class GamezzBloc extends Bloc<GamezzEvent, GamezzState> {
 
   final gameRepository = GamesService();
   ScrollController scrollController = ScrollController();
-  int page = 1;
+  int page = 2;
 
   Future<void> _onFetchGames(
       GamezzFetch event, Emitter<GamezzState> emit) async {
@@ -38,7 +40,6 @@ class GamezzBloc extends Bloc<GamezzEvent, GamezzState> {
         return emit(state.copyWith(
             status: GamezzStatus.success,
             result: games.results,
-            page: page,
             hasReachedMax: false));
       }
 
@@ -49,13 +50,14 @@ class GamezzBloc extends Bloc<GamezzEvent, GamezzState> {
             ? emit(state.copyWith(hasReachedMax: true))
             : emit(state.copyWith(
                 status: GamezzStatus.success,
-                page: page,
                 result: List.of(state.result)..addAll(games.results!.toList()),
                 hasReachedMax: false,
               ));
       }
     } catch (e) {
-      emit(state.copyWith(status: GamezzStatus.failure));
+      emit(state.copyWith(
+          status: GamezzStatus.failure, errorMessage: e.toString()));
+      print(e);
     }
   }
 }

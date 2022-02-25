@@ -1,12 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:game_collections/Data/repository/game_repo.dart';
-import 'package:game_collections/presentation/ui/bloc/gamezz_bloc.dart';
-import 'package:game_collections/presentation/ui/collection/coll_cubit.dart';
-import 'package:game_collections/presentation/ui/collection/collection_bloc.dart';
+import 'package:game_collections/presentation/ui/home_setup.dart';
 import 'package:game_collections/presentation/ui/locator/locator.dart';
-import 'package:game_collections/presentation/ui/new_ui.dart';
-import 'presentation/ui/ui.dart';
 import 'presentation/util/app_bloc_observer.dart';
 
 Future<void> main() async {
@@ -26,17 +21,15 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     // final games = locator.get<GamesRepository>();
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: BlocProvider<GamezzBloc>(
-        create: (context) => GamezzBloc()..add(GamezzFetch()),
-        child: const HomePage(),
-      ),
+        debugShowCheckedModeBanner: false,
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          // scaffoldBackgroundColor: Color.fromARGB(115, 34, 34, 34),
+          primarySwatch: Colors.blue,
+        ),
+        home: const HomeSetUp()
 
-      // HomePage(),
-    );
+        // HomePage(),
+        );
   }
 }

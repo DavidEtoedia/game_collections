@@ -1,7 +1,5 @@
 import 'package:game_collections/Data/model/games.dart';
 
-import '../../../Data/model/gamez.dart';
-
 abstract class GameState {
   const GameState();
 }
