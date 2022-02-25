@@ -90,7 +90,7 @@ class NewReleaseScreen extends StatelessWidget {
                                       ),
                                     ),
                                 imageUrl: newRel.backgroundImage.toString()),
-                            Space(20),
+                            const Space(20),
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [

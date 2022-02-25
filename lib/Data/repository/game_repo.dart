@@ -1,3 +1,4 @@
+import 'package:game_collections/Data/model/creators.dart';
 import 'package:game_collections/Data/model/game_release.dart';
 import 'package:game_collections/Data/model/games.dart';
 import 'package:game_collections/Data/repository/game_i_repo.dart';
@@ -14,4 +15,7 @@ class GamesRepository extends Irepo {
 
   @override
   Future<Games> latestRelease() async => gamesService.latestRelease();
+
+  @override
+  Future<Creators> getCreators() => gamesService.getCreators();
 }
