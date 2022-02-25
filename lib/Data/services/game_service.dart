@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:game_collections/Data/error/error_res.dart';
+import 'package:game_collections/Data/model/creators.dart';
 import 'package:game_collections/Data/model/game_release.dart';
 import 'package:game_collections/Data/model/games.dart';
 import 'package:game_collections/constants/constants.dart';
@@ -40,6 +41,23 @@ class GamesService {
     try {
       final response = await _dio.get(url);
       final res = Games.fromJson(response.data);
+      return res;
+    } on DioError catch (e) {
+      if (e.response != null && e.response!.data == "") {
+        Failure result = Failure.fromJson(e.response!.data);
+        throw result.error!;
+      } else {
+        throw e.error;
+      }
+    }
+  }
+
+  Future<Creators> getCreators() async {
+    const url = "creators?key=${Constant.apiKey}&page=2";
+
+    try {
+      final response = await _dio.get(url);
+      final res = Creators.fromJson(response.data);
       return res;
     } on DioError catch (e) {
       if (e.response != null && e.response!.data == "") {

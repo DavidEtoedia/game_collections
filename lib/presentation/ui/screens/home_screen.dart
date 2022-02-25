@@ -3,6 +3,7 @@ import 'package:game_collections/Data/model/game_release.dart';
 import 'package:game_collections/presentation/ui/helper/app_bg.dart';
 import 'package:game_collections/presentation/ui/home_page.dart';
 import 'package:game_collections/presentation/ui/screens/new_release_screen.dart';
+import 'package:game_collections/presentation/ui/widget/creator_view.dart';
 import 'package:game_collections/presentation/util/space_util.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -32,13 +33,9 @@ class HomeScreen extends StatelessWidget {
                 ),
                 const Space(20),
 
-                NewReleaseScreen(),
+                const NewReleaseScreen(),
                 const Space(20),
-                Container(
-                  color: Colors.blueAccent,
-                  height: 120,
-                  width: MediaQuery.of(context).size.width,
-                ),
+                const CreatorsView(),
 
                 const Space(30),
                 Container(
