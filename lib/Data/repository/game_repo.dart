@@ -18,4 +18,7 @@ class GamesRepository extends Irepo {
 
   @override
   Future<Creators> getCreators() => gamesService.getCreators();
+
+  @override
+  Future<Games> getSingleGame() => gamesService.getSingleGame();
 }

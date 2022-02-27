@@ -23,14 +23,14 @@ class CreatorsView extends StatelessWidget {
             width: MediaQuery.of(context).size.width,
             height: 120,
             borderRadius: 10,
-            blur: 20,
+            blur: 1,
             alignment: Alignment.bottomCenter,
             border: 1,
             linearGradient: LinearGradient(
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
                 colors: [
-                  const Color(0xFFffffff).withOpacity(0.1),
+                  const Color(0xFFffffff).withOpacity(0.2),
                   const Color(0xFFFFFFFF).withOpacity(0.05)
                 ],
                 stops: const [
