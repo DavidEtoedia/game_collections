@@ -7,6 +7,7 @@ import 'package:game_collections/presentation/ui/creators/bloc/creators_bloc.dar
 import 'package:game_collections/presentation/ui/home_page.dart';
 import 'package:game_collections/presentation/ui/new%20release/bloc/new_release_bloc.dart';
 import 'package:game_collections/presentation/ui/screens/home_screen.dart';
+import 'package:game_collections/presentation/ui/sinlge_game/bloc/single_game_bloc.dart';
 
 class HomeSetUp extends StatelessWidget {
   const HomeSetUp({Key? key}) : super(key: key);
@@ -23,7 +24,9 @@ class HomeSetUp extends StatelessWidget {
             BlocProvider<NewReleaseBloc>(
                 create: (context) => NewReleaseBloc()..add(NewReleaseFetch())),
             BlocProvider<CreatorsBloc>(
-                create: (context) => CreatorsBloc()..add(CreatorFetch()))
+                create: (context) => CreatorsBloc()..add(CreatorFetch())),
+            BlocProvider<SingleGameBloc>(
+                create: (context) => SingleGameBloc()..add(SingleGameFetch()))
           ],
           child: const HomeScreen(),
         ),

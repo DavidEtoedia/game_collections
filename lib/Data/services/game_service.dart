@@ -68,4 +68,22 @@ class GamesService {
       }
     }
   }
+
+  Future<Games> getSingleGame() async {
+    const url = "games?key=${Constant.apiKey}&page=2&genre=action";
+
+    try {
+      final response = await _dio.get(url);
+      final res = Games.fromJson(response.data);
+      return res;
+    } on DioError catch (e) {
+      if (e.response != null && e.response!.data == "") {
+        Failure result = Failure.fromJson(e.response!.data);
+        throw result.error!;
+      } else {
+        print(e.error);
+        throw e.error;
+      }
+    }
+  }
 }
