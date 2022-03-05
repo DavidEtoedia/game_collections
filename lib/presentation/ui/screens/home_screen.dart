@@ -25,8 +25,8 @@ class HomeScreen extends StatelessWidget {
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
             colors: [
-              const Color.fromARGB(255, 7, 7, 7).withOpacity(0.9),
-              const Color.fromARGB(255, 7, 7, 7).withOpacity(0.8)
+              Color.fromARGB(255, 0, 7, 36).withOpacity(0.9),
+              Color.fromARGB(255, 73, 73, 73).withOpacity(0.8)
             ],
             stops: const [
               0.1,
@@ -46,56 +46,67 @@ class HomeScreen extends StatelessWidget {
             padding: const EdgeInsets.only(left: 20, right: 20, top: 40),
             child: SingleChildScrollView(
               child: Column(
-                children: [
-                  const Space(20),
-                  const GameHeader(),
-                  const Divider(
+                children: const [
+                  Space(20),
+                  GameHeader(),
+                  Divider(
                     color: Colors.grey,
                     endIndent: 0,
                     thickness: 0.5,
                   ),
 
-                  const Space(20),
+                  Space(20),
 
-                  const NewReleaseScreen(),
-                  const Space(20),
-                  const CreatorsView(),
+                  NewReleaseScreen(),
+                  Space(20),
+                  CreatorsView(),
 
-                  const Space(30),
-                  GlassmorphicContainer(
-                    width: MediaQuery.of(context).size.width,
-                    height: 70,
-                    borderRadius: 20,
-                    blur: 1,
-                    alignment: Alignment.bottomCenter,
-                    border: 1,
-                    linearGradient: LinearGradient(
-                        begin: Alignment.topLeft,
-                        end: Alignment.bottomRight,
-                        colors: [
-                          const Color(0xFFffffff).withOpacity(0.2),
-                          const Color(0xFFFFFFFF).withOpacity(0.05)
-                        ],
-                        stops: const [
-                          0.1,
-                          1,
-                        ]),
-                    borderGradient: LinearGradient(
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                      colors: [
-                        const Color(0xFFffffff).withOpacity(0.5),
-                        const Color((0xFFFFFFFF)).withOpacity(0.5)
-                      ],
-                    ),
-                  ),
-                  const Space(50),
+                  Space(30),
+                  FloatingBottomNav(),
+                  Space(50),
                   // const HomePage()
                 ],
               ),
             ),
           ),
         ),
+      ),
+    );
+  }
+}
+
+class FloatingBottomNav extends StatelessWidget {
+  const FloatingBottomNav({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return GlassmorphicContainer(
+      width: MediaQuery.of(context).size.width,
+      height: 70,
+      borderRadius: 20,
+      blur: 1,
+      alignment: Alignment.bottomCenter,
+      border: 1,
+      linearGradient: LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: [
+            const Color(0xFFffffff).withOpacity(0.2),
+            const Color(0xFFFFFFFF).withOpacity(0.05)
+          ],
+          stops: const [
+            0.1,
+            1,
+          ]),
+      borderGradient: LinearGradient(
+        begin: Alignment.topLeft,
+        end: Alignment.bottomRight,
+        colors: [
+          const Color(0xFFffffff).withOpacity(0.5),
+          const Color((0xFFFFFFFF)).withOpacity(0.5)
+        ],
       ),
     );
   }

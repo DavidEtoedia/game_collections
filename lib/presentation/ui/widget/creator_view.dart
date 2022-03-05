@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:game_collections/Data/model/creators.dart';
 import 'package:game_collections/controller/generic_state_notifier.dart';
+import 'package:game_collections/presentation/component/loading_progress.dart';
 import 'package:game_collections/presentation/ui/creators/bloc/creators_bloc.dart';
 import 'package:game_collections/presentation/ui/helper/glass_morph.dart';
 import 'package:game_collections/presentation/util/space_util.dart';
@@ -71,10 +72,9 @@ class CreatorsView extends StatelessWidget {
                         return ClipRRect(
                           borderRadius: BorderRadius.circular(300.0),
                           child: CachedNetworkImage(
-                            fit: BoxFit.contain,
-                            imageUrl: facePile.image.toString(),
+                            fit: BoxFit.fill,
                             placeholder: (context, url) =>
-                                const CircularProgressIndicator(),
+                                const LoadingProgress(),
                             errorWidget: (context, url, error) => SizedBox(
                               height: 50,
                               width: 50,
@@ -84,6 +84,8 @@ class CreatorsView extends StatelessWidget {
                                 height: 20,
                               ),
                             ),
+                            imageUrl: facePile.image!,
+                            useOldImageOnUrlChange: true,
                           ),
                         );
                       },

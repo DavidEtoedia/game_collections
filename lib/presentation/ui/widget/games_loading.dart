@@ -22,7 +22,7 @@ class ItemLoadingCard extends StatelessWidget {
         ],
       ),
       child: Shimmer.fromColors(
-        highlightColor: Color(0xFFFFFFFF),
+        highlightColor: const Color(0xFFFFFFFF),
         baseColor: Colors.grey,
         child: Column(
           mainAxisSize: MainAxisSize.max,
@@ -41,8 +41,8 @@ class ItemLoadingCard extends StatelessWidget {
                 child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                  const SizedBox(
+                    children: const [
+                  SizedBox(
                     height: 5,
                   ),
                 ]))
