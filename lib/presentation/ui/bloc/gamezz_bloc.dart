@@ -1,7 +1,10 @@
+import 'dart:async';
+
 import 'package:bloc/bloc.dart';
 import 'package:bloc_concurrency/bloc_concurrency.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:game_collections/Data/model/games.dart';
 import 'package:game_collections/Data/services/exception/game_exception.dart';
 import 'package:game_collections/Data/services/game_service.dart';
@@ -27,12 +30,12 @@ class GamezzBloc extends Bloc<GamezzEvent, GamezzState> {
   }
 
   final gameRepository = GamesService();
-  ScrollController scrollController = ScrollController();
   int page = 2;
 
-  Future<void> _onFetchGames(
-      GamezzFetch event, Emitter<GamezzState> emit) async {
+  Future<void> _onFetchGames(GamezzFetch event, emit) async {
     if (state.hasReachedMax) return;
+
+    emit(state.copyWith(isLoading: true));
 
     try {
       if (state.status == GamezzStatus.initial) {
@@ -57,7 +60,8 @@ class GamezzBloc extends Bloc<GamezzEvent, GamezzState> {
     } catch (e) {
       emit(state.copyWith(
           status: GamezzStatus.failure, errorMessage: e.toString()));
-      print(e);
+      emit(state.copyWith(isLoading: false));
+      // print(e);
     }
   }
 }

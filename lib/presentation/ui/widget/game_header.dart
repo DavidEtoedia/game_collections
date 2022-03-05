@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:game_collections/Data/model/games.dart';
 import 'package:game_collections/controller/generic_state_notifier.dart';
+import 'package:game_collections/presentation/component/loading_progress.dart';
 import 'package:game_collections/presentation/ui/helper/app_image.dart';
 import 'package:game_collections/presentation/ui/helper/rating_star.dart';
 import 'package:game_collections/presentation/ui/sinlge_game/bloc/single_game_bloc.dart';
@@ -45,6 +46,8 @@ class GameHeader extends StatelessWidget {
                         blendMode: BlendMode.dstOut,
                         child: CachedNetworkImage(
                             fit: BoxFit.fill,
+                            placeholder: (context, url) =>
+                                const LoadingProgress(),
                             errorWidget: (context, url, error) => SizedBox(
                                   height: 50,
                                   width: 50,
@@ -54,7 +57,7 @@ class GameHeader extends StatelessWidget {
                                     height: 20,
                                   ),
                                 ),
-                            imageUrl: data!.results![17].backgroundImage),
+                            imageUrl: data!.results![13].backgroundImage),
                       ),
                     ),
                   ),
@@ -67,21 +70,21 @@ class GameHeader extends StatelessWidget {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         Text(
-                          data.results![17].name.toString(),
+                          data.results![13].name.toString(),
                           style: const TextStyle(
                               color: Colors.white,
                               fontSize: 23,
                               fontWeight: FontWeight.w600),
                         ),
                         Text(
-                          'reviews:${data.results![17].reviewsCount.toString()}',
+                          'reviews:${data.results![13].reviewsCount.toString()}',
                           style: const TextStyle(
                               color: Colors.white,
                               fontSize: 15,
                               fontWeight: FontWeight.w400),
                         ),
                         SmoothStarRating(
-                          starCount: data.results![17].rating!.toInt(),
+                          starCount: data.results![13].rating!.toInt(),
                         )
                       ],
                     ),
@@ -113,7 +116,7 @@ class GameHeader extends StatelessWidget {
               ),
               const Space(10),
               Text(
-                data.results![17].name.toString(),
+                data.results![13].name.toString(),
                 style: const TextStyle(
                     fontSize: 15,
                     fontWeight: FontWeight.w400,

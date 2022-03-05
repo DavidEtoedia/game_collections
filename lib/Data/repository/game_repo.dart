@@ -1,5 +1,5 @@
 import 'package:game_collections/Data/model/creators.dart';
-import 'package:game_collections/Data/model/game_release.dart';
+import 'package:game_collections/Data/model/game_detail.dart';
 import 'package:game_collections/Data/model/games.dart';
 import 'package:game_collections/Data/repository/game_i_repo.dart';
 import 'package:game_collections/Data/services/game_service.dart';
@@ -21,4 +21,7 @@ class GamesRepository extends Irepo {
 
   @override
   Future<Games> getSingleGame() => gamesService.getSingleGame();
+
+  @override
+  Future<GameDetails> getGameDetail(int id) => gamesService.getGameDetail(id);
 }

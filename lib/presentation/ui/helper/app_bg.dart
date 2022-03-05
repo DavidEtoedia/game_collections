@@ -12,10 +12,32 @@ class BackGroundImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Stack(
-        children: [buildBackGround(), child],
+        children: [
+          BuildBackGround(
+            image: image,
+          ),
+          child
+        ],
       );
 
-  Widget buildBackGround() {
+  // Widget buildBackGround() {
+  //   return Container(
+  //     decoration: BoxDecoration(
+  //         // gradient: LinearGradient(colors: [
+  //         //   Color(0XFF29292a),
+  //         //   Color(0XFF29282b),
+  //         // ]),
+  //         image: DecorationImage(image: image, fit: BoxFit.fill)),
+  //   );
+  // }
+}
+
+class BuildBackGround extends StatelessWidget {
+  final ImageProvider image;
+  const BuildBackGround({Key? key, required this.image}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
           // gradient: LinearGradient(colors: [

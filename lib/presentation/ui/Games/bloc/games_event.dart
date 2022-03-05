@@ -1,6 +1,6 @@
 part of 'games_bloc.dart';
 
-@freezed
+// @freezed
 abstract class GamesEvent extends Equatable {}
 
 class FetchGamesEvent extends GamesEvent {

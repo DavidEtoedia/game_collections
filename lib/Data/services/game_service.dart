@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:game_collections/Data/error/error_res.dart';
 import 'package:game_collections/Data/model/creators.dart';
-import 'package:game_collections/Data/model/game_release.dart';
+import 'package:game_collections/Data/model/game_detail.dart';
 import 'package:game_collections/Data/model/games.dart';
 import 'package:game_collections/constants/constants.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
@@ -36,7 +36,7 @@ class GamesService {
   }
 
   Future<Games> latestRelease() async {
-    const url = "games?key=${Constant.apiKey}&page=5&genre=action";
+    const url = "games?key=${Constant.apiKey}&page=2&genre=action";
 
     try {
       final response = await _dio.get(url);
@@ -75,6 +75,24 @@ class GamesService {
     try {
       final response = await _dio.get(url);
       final res = Games.fromJson(response.data);
+      return res;
+    } on DioError catch (e) {
+      if (e.response != null && e.response!.data == "") {
+        Failure result = Failure.fromJson(e.response!.data);
+        throw result.error!;
+      } else {
+        print(e.error);
+        throw e.error;
+      }
+    }
+  }
+
+  Future<GameDetails> getGameDetail(int id) async {
+    final url = "games/$id?key=${Constant.apiKey}";
+
+    try {
+      final response = await _dio.get(url);
+      final res = GameDetails.fromJson(response.data);
       return res;
     } on DioError catch (e) {
       if (e.response != null && e.response!.data == "") {
