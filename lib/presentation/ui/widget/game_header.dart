@@ -83,7 +83,7 @@ class GameHeader extends StatelessWidget {
                               fontSize: 15,
                               fontWeight: FontWeight.w400),
                         ),
-                        SmoothStarRating(
+                        StarRating(
                           starCount: data.results![13].rating!.toInt(),
                         )
                       ],

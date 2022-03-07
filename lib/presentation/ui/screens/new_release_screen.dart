@@ -32,7 +32,7 @@ class _NewReleaseScreenState extends State<NewReleaseScreen> {
               success: (data) {
                 return InkWell(
                   onTap: () {
-                    context.navigate(const TabBarVieww());
+                    context.navigate(const NewTabView());
 
                     // Navigator.of(context).push(MaterialPageRoute(builder: (_) {
                     //   return BlocProvider.value(
@@ -142,7 +142,7 @@ class _NewReleaseScreenState extends State<NewReleaseScreen> {
                                                   fontWeight: FontWeight.w400),
                                             ),
                                             const Space(3.5),
-                                            SmoothStarRating(
+                                            StarRating(
                                                 allowHalfRating: true,
                                                 starCount:
                                                     newRel.rating!.toInt(),

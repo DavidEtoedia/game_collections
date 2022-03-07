@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/material.dart';
 
-class SmoothStarRating extends StatelessWidget {
+class StarRating extends StatelessWidget {
   final int? starCount;
   final bool
       allowHalfRating; //this is needed only when having fullRatedIconData && halfRatedIconData
   final double spacing;
-  SmoothStarRating({
+  const StarRating({
+    Key? key,
     this.starCount = 5,
-    this.spacing = 0.0,
     this.allowHalfRating = true,
-  });
+    this.spacing = 0.0,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

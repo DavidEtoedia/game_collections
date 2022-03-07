@@ -149,8 +149,6 @@ class Result {
     this.updated,
     this.userGame,
     this.reviewsCount,
-    this.saturatedColor,
-    this.dominantColor,
     this.platforms,
     this.parentPlatforms,
     this.genres,
@@ -174,8 +172,6 @@ class Result {
   DateTime? updated;
   dynamic userGame;
   int? reviewsCount;
-  Color? saturatedColor;
-  Color? dominantColor;
   List<PlatformElement>? platforms;
   List<ParentPlatform>? parentPlatforms;
   List<Genre>? genres;
@@ -200,8 +196,6 @@ class Result {
         updated: DateTime.parse(json["updated"]),
         userGame: json["user_game"],
         reviewsCount: json["reviews_count"],
-        saturatedColor: colorValues.map[json["saturated_color"]],
-        dominantColor: colorValues.map[json["dominant_color"]],
         platforms: List<PlatformElement>.from(
             json["platforms"].map((x) => PlatformElement.fromJson(x))),
         parentPlatforms: List<ParentPlatform>.from(
@@ -230,8 +224,6 @@ class Result {
         "updated": updated!.toIso8601String(),
         "user_game": userGame,
         "reviews_count": reviewsCount,
-        "saturated_color": colorValues.reverse[saturatedColor],
-        "dominant_color": colorValues.reverse[dominantColor],
         "platforms": List<dynamic>.from(platforms!.map((x) => x.toJson())),
         "parent_platforms":
             List<dynamic>.from(parentPlatforms!.map((x) => x.toJson())),
@@ -242,10 +234,6 @@ class Result {
             List<dynamic>.from(shortScreenshots!.map((x) => x.toJson())),
       };
 }
-
-enum Color { THE_0_F0_F0_F }
-
-final colorValues = EnumValues({"0f0f0f": Color.THE_0_F0_F0_F});
 
 class EsrbRating {
   EsrbRating({

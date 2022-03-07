@@ -12,61 +12,58 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BackGroundImage(
-      image: const AssetImage(AppImage.ghost),
-      child: GlassmorphicContainer(
-        width: 400,
-        height: 800,
-        borderRadius: 1,
-        blur: 2,
-        alignment: Alignment.bottomCenter,
-        border: 1,
-        linearGradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [
-              Color.fromARGB(255, 0, 7, 36).withOpacity(0.9),
-              Color.fromARGB(255, 73, 73, 73).withOpacity(0.8)
-            ],
-            stops: const [
-              0.1,
-              1,
-            ]),
-        borderGradient: LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
+    return GlassmorphicContainer(
+      width: 400,
+      height: 800,
+      borderRadius: 1,
+      blur: 2,
+      alignment: Alignment.bottomCenter,
+      border: 1,
+      linearGradient: LinearGradient(
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
           colors: [
-            const Color(0xFFffffff).withOpacity(0.5),
-            const Color((0xFFFFFFFF)).withOpacity(0.5)
+            Color.fromARGB(255, 27, 27, 27).withOpacity(0.9),
+            Color.fromARGB(255, 73, 73, 73).withOpacity(0.8)
           ],
-        ),
-        child: Scaffold(
-          backgroundColor: Colors.transparent,
-          body: Padding(
-            padding: const EdgeInsets.only(left: 20, right: 20, top: 40),
-            child: SingleChildScrollView(
-              child: Column(
-                children: const [
-                  Space(20),
-                  GameHeader(),
-                  Divider(
-                    color: Colors.grey,
-                    endIndent: 0,
-                    thickness: 0.5,
-                  ),
+          stops: const [
+            0.1,
+            1,
+          ]),
+      borderGradient: LinearGradient(
+        begin: Alignment.topLeft,
+        end: Alignment.bottomRight,
+        colors: [
+          const Color(0xFFffffff).withOpacity(0.5),
+          const Color((0xFFFFFFFF)).withOpacity(0.5)
+        ],
+      ),
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        body: Padding(
+          padding: const EdgeInsets.only(left: 20, right: 20, top: 40),
+          child: SingleChildScrollView(
+            child: Column(
+              children: const [
+                Space(20),
+                GameHeader(),
+                Divider(
+                  color: Colors.grey,
+                  endIndent: 0,
+                  thickness: 0.5,
+                ),
 
-                  Space(20),
+                Space(20),
 
-                  NewReleaseScreen(),
-                  Space(20),
-                  CreatorsView(),
+                NewReleaseScreen(),
+                Space(20),
+                CreatorsView(),
 
-                  Space(30),
-                  FloatingBottomNav(),
-                  Space(50),
-                  // const HomePage()
-                ],
-              ),
+                Space(30),
+                FloatingBottomNav(),
+                Space(50),
+                // const HomePage()
+              ],
             ),
           ),
         ),
