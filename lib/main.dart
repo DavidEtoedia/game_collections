@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:game_collections/Data/repository/game_repo.dart';
+import 'package:game_collections/presentation/ui/cubit/appstate_cubit.dart';
 import 'package:game_collections/presentation/ui/locator/locator.dart';
 import 'package:game_collections/presentation/ui/screens/home_screen.dart';
 import 'package:game_collections/presentation/util/app_nav.dart';
@@ -40,7 +41,8 @@ class MyApp extends StatelessWidget {
               create: (_) => CreatorsBloc()..add(CreatorFetch())),
           BlocProvider<SingleGameBloc>(
               create: (_) => SingleGameBloc()..add(SingleGameFetch())),
-          BlocProvider<GamesDetailsBloc>(create: (_) => GamesDetailsBloc())
+          BlocProvider<GamesDetailsBloc>(create: (_) => GamesDetailsBloc()),
+          BlocProvider<AppstateCubit>(create: (_) => AppstateCubit())
         ],
         child: const GameView(),
       ),
@@ -60,6 +62,8 @@ class GameView extends StatelessWidget {
         navigatorKey: navigator.key,
         title: 'Flutter Demo',
         theme: ThemeData(
+          // scaffoldBackgroundColor: Color.fromARGB(255, 37, 37, 37),
+          scaffoldBackgroundColor: const Color(0Xff29282b),
           primarySwatch: Colors.blue,
         ),
         home: const HomeScreen()
