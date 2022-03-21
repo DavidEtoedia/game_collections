@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:game_collections/Data/error/error_res.dart';
 import 'package:game_collections/Data/model/creators.dart';
 import 'package:game_collections/Data/model/game_detail.dart';
+import 'package:game_collections/Data/model/game_screenshots.dart';
 import 'package:game_collections/Data/model/games.dart';
 import 'package:game_collections/constants/constants.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
@@ -100,6 +101,23 @@ class GamesService {
         throw result.error!;
       } else {
         print(e.error);
+        throw e.error;
+      }
+    }
+  }
+
+  Future<GameScreenShots> getScreenShot(String screenShotId) async {
+    final url = "games/$screenShotId/screenshots?key=${Constant.apiKey}";
+
+    try {
+      final response = await _dio.get(url);
+      final res = GameScreenShots.fromJson(response.data);
+      return res;
+    } on DioError catch (e) {
+      if (e.response != null && e.response!.data == "") {
+        Failure result = Failure.fromJson(e.response!.data);
+        throw result.error!;
+      } else {
         throw e.error;
       }
     }

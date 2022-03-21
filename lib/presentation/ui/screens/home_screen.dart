@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:game_collections/presentation/ui/helper/app_bg.dart';
-import 'package:game_collections/presentation/ui/helper/app_image.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:game_collections/presentation/ui/helper/glass_morph.dart';
 import 'package:game_collections/presentation/ui/screens/new_release_screen.dart';
 import 'package:game_collections/presentation/ui/widget/creator_view.dart';
 import 'package:game_collections/presentation/ui/widget/game_header.dart';
 import 'package:game_collections/presentation/util/space_util.dart';
+
+import '../connection/cubit/connection_cubit_cubit.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -23,8 +24,8 @@ class HomeScreen extends StatelessWidget {
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
           colors: [
-            Color.fromARGB(255, 27, 27, 27).withOpacity(0.9),
-            Color.fromARGB(255, 73, 73, 73).withOpacity(0.8)
+            const Color.fromARGB(255, 27, 27, 27).withOpacity(0.9),
+            const Color.fromARGB(255, 73, 73, 73).withOpacity(0.8)
           ],
           stops: const [
             0.1,
