@@ -36,6 +36,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_bloc: ^8.0.1
+  flutter_dotenv: ^5.0.2
   flutter_layout_grid: ^1.0.3
   flutter_spinkit: ^5.1.0
   freezed_annotation: null

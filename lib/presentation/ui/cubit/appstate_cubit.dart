@@ -12,3 +12,11 @@ class AppstateCubit extends Cubit<bool> {
     print(state);
   }
 }
+
+class ViewStateCubit extends Cubit<bool> {
+  ViewStateCubit() : super(false);
+  // void increment() => emit(state);
+
+  void toggleView() => emit(false);
+  void toggleViews() => emit(true);
+}

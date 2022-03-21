@@ -1,6 +1,6 @@
 import 'package:game_collections/Data/model/creators.dart';
 import 'package:game_collections/Data/model/game_detail.dart';
-import 'package:game_collections/Data/model/game_release.dart';
+import 'package:game_collections/Data/model/game_screenshots.dart';
 import 'package:game_collections/Data/model/games.dart';
 
 abstract class Irepo {
@@ -9,4 +9,5 @@ abstract class Irepo {
   Future<Games> latestRelease();
   Future<Creators> getCreators();
   Future<GameDetails> getGameDetail(int id);
+  Future<GameScreenShots> getScreenShot(String screenShotId);
 }

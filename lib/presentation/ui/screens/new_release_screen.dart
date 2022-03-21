@@ -7,11 +7,13 @@ import 'package:game_collections/presentation/component/loading_progress.dart';
 import 'package:game_collections/presentation/ui/bloc/gamezz_bloc.dart';
 import 'package:game_collections/presentation/ui/helper/glass_morph.dart';
 import 'package:game_collections/presentation/ui/helper/rating_star.dart';
-import 'package:game_collections/presentation/ui/screens/game_list.dart';
+import 'package:game_collections/presentation/ui/screens/tab_view.dart';
 import 'package:game_collections/presentation/ui/new%20release/bloc/new_release_bloc.dart';
 import 'package:game_collections/presentation/util/app_nav.dart';
 import 'package:game_collections/presentation/util/space_util.dart';
 import 'package:intl/intl.dart';
+
+import '../connection/cubit/connection_cubit_cubit.dart';
 
 class NewReleaseScreen extends StatefulWidget {
   const NewReleaseScreen({Key? key}) : super(key: key);

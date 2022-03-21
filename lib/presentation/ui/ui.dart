@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:game_collections/Data/model/games.dart';
-import 'package:game_collections/Data/model/news.dart';
 import 'package:game_collections/controller/generic_state_notifier.dart';
 import 'package:game_collections/presentation/ui/Games/bloc/games_bloc.dart';
 import 'package:game_collections/presentation/ui/collection/coll_cubit.dart';
@@ -15,7 +14,7 @@ import 'collection/collection_state.dart';
 // import 'package:flutter_bloc/flutter_bloc.dart';
 
 class HomeLayout extends StatefulWidget {
-  HomeLayout({Key? key}) : super(key: key);
+  const HomeLayout({Key? key}) : super(key: key);
 
   @override
   State<HomeLayout> createState() => _HomeLayoutState();

@@ -2,10 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:game_collections/Data/model/games.dart';
-import 'package:game_collections/Data/model/news.dart';
-import 'package:game_collections/Data/repository/game_repo.dart';
 import 'package:game_collections/Data/services/game_service.dart';
-import 'package:game_collections/Data/services/news_service.dart';
 import 'package:game_collections/controller/generic_state_notifier.dart';
 
 part 'games_event.dart';
