@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:game_collections/presentation/ui/helper/glass_morph.dart';
 import 'package:game_collections/presentation/ui/screens/new_release_screen.dart';
 import 'package:game_collections/presentation/ui/widget/creator_view.dart';
 import 'package:game_collections/presentation/ui/widget/game_header.dart';
 import 'package:game_collections/presentation/util/space_util.dart';
-
-import '../connection/cubit/connection_cubit_cubit.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -61,8 +58,7 @@ class HomeScreen extends StatelessWidget {
                 CreatorsView(),
 
                 Space(30),
-                FloatingBottomNav(),
-                Space(50),
+
                 // const HomePage()
               ],
             ),

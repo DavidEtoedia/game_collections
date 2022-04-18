@@ -1,6 +1,8 @@
 import 'package:dio/dio.dart';
+import 'package:dio_cache_interceptor/dio_cache_interceptor.dart';
 import 'package:game_collections/Data/error/error_res.dart';
 import 'package:game_collections/Data/model/creators.dart';
+import 'package:game_collections/Data/model/game_achievements.dart';
 import 'package:game_collections/Data/model/game_detail.dart';
 import 'package:game_collections/Data/model/game_screenshots.dart';
 import 'package:game_collections/Data/model/games.dart';
@@ -16,6 +18,9 @@ class GamesService {
                 connectTimeout: 100000,
                 baseUrl: Constant.gamesUrl)) {
     _dio.interceptors.add(PrettyDioLogger());
+    _dio.interceptors.add(DioCacheInterceptor(
+        options:
+            CacheOptions(policy: CachePolicy.request, store: MemCacheStore())));
   }
 
   Future<Games> getGames(int page) async {
@@ -24,6 +29,7 @@ class GamesService {
     try {
       final response = await _dio.get(url);
       final res = Games.fromJson(response.data);
+      print(res);
       return res;
     } on DioError catch (e) {
       if (e.response != null && e.response!.data == "") {
@@ -48,6 +54,25 @@ class GamesService {
         Failure result = Failure.fromJson(e.response!.data);
         throw result.error!;
       } else {
+        throw e.error;
+      }
+    }
+  }
+
+  Future<Games> getPurchased(int page) async {
+    final url = "games?key=${Constant.apiKey}&page=$page&genre=indie";
+
+    try {
+      final response = await _dio.get(url);
+      final res = Games.fromJson(response.data);
+      print(res);
+      return res;
+    } on DioError catch (e) {
+      if (e.response != null && e.response!.data == "") {
+        Failure result = Failure.fromJson(e.response!.data);
+        throw result.error!;
+      } else {
+        print(e.error);
         throw e.error;
       }
     }
@@ -112,6 +137,23 @@ class GamesService {
     try {
       final response = await _dio.get(url);
       final res = GameScreenShots.fromJson(response.data);
+      return res;
+    } on DioError catch (e) {
+      if (e.response != null && e.response!.data == "") {
+        Failure result = Failure.fromJson(e.response!.data);
+        throw result.error!;
+      } else {
+        throw e.error;
+      }
+    }
+  }
+
+  Future<GameAchievements> getAchievements(int id) async {
+    final url = "games/$id/achievements?key=${Constant.apiKey}";
+
+    try {
+      final response = await _dio.get(url);
+      final res = GameAchievements.fromJson(response.data);
       return res;
     } on DioError catch (e) {
       if (e.response != null && e.response!.data == "") {

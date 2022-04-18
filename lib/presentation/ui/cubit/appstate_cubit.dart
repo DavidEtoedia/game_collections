@@ -9,7 +9,6 @@ class AppstateCubit extends Cubit<bool> {
 
   void toggleButton() {
     state == false ? emit(true) : emit(false);
-    print(state);
   }
 }
 
