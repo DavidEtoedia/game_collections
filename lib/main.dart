@@ -69,17 +69,11 @@ class GameView extends StatefulWidget {
 }
 
 class _GameViewState extends State<GameView> {
-  @override
-  void initState() {
-    super.initState();
-  }
-
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    //connection works very fine.......
     context.read<ConnectionCubit>().monitorInternetConnection();
-    // final games = locator.get<GamesRepository>();
+
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         navigatorKey: navigator.key,
