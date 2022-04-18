@@ -1,4 +1,5 @@
 import 'package:game_collections/Data/model/creators.dart';
+import 'package:game_collections/Data/model/game_achievements.dart';
 import 'package:game_collections/Data/model/game_detail.dart';
 import 'package:game_collections/Data/model/game_screenshots.dart';
 import 'package:game_collections/Data/model/games.dart';
@@ -29,4 +30,11 @@ class GamesRepository extends Irepo {
   @override
   Future<GameScreenShots> getScreenShot(String screenShotId) =>
       gamesService.getScreenShot(screenShotId);
+
+  @override
+  Future<GameAchievements> getAchievements(int id) =>
+      gamesService.getAchievements(id);
+
+  @override
+  Future<Games> getPurchased(int page) => gamesService.getPurchased(page);
 }

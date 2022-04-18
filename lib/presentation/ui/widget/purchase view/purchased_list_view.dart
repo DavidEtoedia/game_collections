@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:game_collections/Data/model/games.dart';
 import 'package:game_collections/presentation/ui/Games/gamezz_bloc.dart';
+import 'package:game_collections/presentation/ui/purchased/bloc/purchased_games_bloc.dart';
 import 'package:game_collections/presentation/util/app_nav.dart';
 import 'package:game_collections/presentation/util/space_util.dart';
 import 'package:intl/intl.dart';
@@ -12,14 +13,14 @@ import '../../Game detail/bloc/games_details_dart_bloc.dart';
 import '../../helper/rating_star.dart';
 import '../../screens/game_details_screen.dart';
 
-class GameListView extends StatefulWidget {
-  const GameListView({Key? key}) : super(key: key);
+class PurchasedListView extends StatefulWidget {
+  const PurchasedListView({Key? key}) : super(key: key);
 
   @override
-  State<GameListView> createState() => _GameListViewState();
+  State<PurchasedListView> createState() => _PurchasedListViewState();
 }
 
-class _GameListViewState extends State<GameListView>
+class _PurchasedListViewState extends State<PurchasedListView>
     with AutomaticKeepAliveClientMixin {
   final _scrollController = ScrollController();
 
@@ -28,16 +29,17 @@ class _GameListViewState extends State<GameListView>
     super.build(context);
     return Column(
       children: [
-        BlocConsumer<GamezzBloc, GamezzState>(listener: ((context, state) {
-          if (state.status == GamezzStatus.initial) {
+        BlocConsumer<PurchasedGamesBloc, PurchasedGameState>(
+            listener: ((context, state) {
+          if (state.status == PurchasedStatus.initial) {
             ScaffoldMessenger.of(context)
                 .showSnackBar(const SnackBar(content: Text('Lets play baby')));
           }
         }), builder: (_, state) {
           switch (state.status) {
-            case GamezzStatus.failure:
+            case PurchasedStatus.failure:
               return Center(child: Text(state.errorMessage.toString()));
-            case GamezzStatus.success:
+            case PurchasedStatus.success:
               if (state.result.isEmpty) {
                 return const Center(child: Text('no posts'));
               }
@@ -89,7 +91,7 @@ class _GameListViewState extends State<GameListView>
     _scrollController.addListener(() {
       if (_scrollController.position.atEdge) {
         if (_scrollController.position.pixels != 0) {
-          context.read<GamezzBloc>().add(GamezzFetch());
+          context.read<PurchasedGamesBloc>().add(FetchPurchased());
         }
       }
     });

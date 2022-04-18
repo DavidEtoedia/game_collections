@@ -6,9 +6,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:game_collections/Data/model/games.dart';
-import 'package:game_collections/Data/services/exception/game_exception.dart';
 import 'package:game_collections/Data/services/game_service.dart';
-import 'package:game_collections/presentation/ui/Games/bloc/games_bloc.dart';
 import 'package:stream_transform/stream_transform.dart';
 
 part 'gamezz_event.dart';

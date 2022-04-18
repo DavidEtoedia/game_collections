@@ -1,24 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:game_collections/Data/repository/game_repo.dart';
+import 'package:game_collections/presentation/ui/bloc/achievements_bloc.dart';
 import 'package:game_collections/presentation/ui/cubit/appstate_cubit.dart';
 import 'package:game_collections/presentation/ui/gameScreenshot/bloc/game_screen_shots_bloc.dart';
-import 'package:game_collections/presentation/ui/locator/locator.dart';
 import 'package:game_collections/presentation/ui/screens/home_screen.dart';
 import 'package:game_collections/presentation/util/app_nav.dart';
 import 'Data/services/game_service.dart';
 import 'presentation/ui/Game detail/bloc/games_details_dart_bloc.dart';
-import 'presentation/ui/bloc/gamezz_bloc.dart';
+import 'presentation/ui/Games/gamezz_bloc.dart';
 import 'presentation/ui/connection/cubit/connection_cubit_cubit.dart';
 import 'presentation/ui/creators/bloc/creators_bloc.dart';
 import 'presentation/ui/network/bloc/network_bloc.dart';
 import 'presentation/ui/new release/bloc/new_release_bloc.dart';
+import 'presentation/ui/purchased/bloc/purchased_games_bloc.dart';
 import 'presentation/ui/sinlge_game/bloc/single_game_bloc.dart';
 import 'presentation/util/app_bloc_observer.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  setUp();
   BlocOverrides.runZoned(
     () => runApp(const MyApp()),
     blocObserver: AppBlocObserver(),
@@ -51,6 +51,9 @@ class MyApp extends StatelessWidget {
           BlocProvider<ConnectionCubit>(create: (_) => ConnectionCubit()),
           BlocProvider<NetworkBloc>(
               create: (_) => NetworkBloc()..add(NetworkEvent())),
+          BlocProvider<AchievementsBloc>(create: (_) => AchievementsBloc()),
+          BlocProvider<PurchasedGamesBloc>(
+              create: (_) => PurchasedGamesBloc()..add(FetchPurchased())),
         ],
         child: const GameView(),
       ),

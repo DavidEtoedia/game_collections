@@ -6,6 +6,7 @@ import 'package:game_collections/controller/generic_state_notifier.dart';
 import 'package:game_collections/presentation/component/loading_progress.dart';
 import 'package:game_collections/presentation/ui/Game%20detail/bloc/games_details_dart_bloc.dart';
 import 'package:game_collections/presentation/ui/cubit/appstate_cubit.dart';
+import 'package:game_collections/presentation/ui/widget/achievements.dart';
 import 'package:game_collections/presentation/ui/widget/screen_shots.dart';
 import 'package:game_collections/presentation/util/space_util.dart';
 
@@ -92,12 +93,30 @@ class GameDetailsScreen extends StatelessWidget {
                                   starCount: data.rating!.toInt(),
                                   spacing: 0.0),
                               const Space(20),
+                              const Text(
+                                'Screenshots',
+                                style: TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.w600,
+                                    color: Colors.white),
+                              ),
+                              const Space(20),
                               const ScreenShots(),
+                              const Space(20),
+                              const Text(
+                                'Achievements',
+                                style: TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.w600,
+                                    color: Colors.white),
+                              ),
+                              const Space(20),
+                              const AchievementView(),
                               const Space(20),
                               const Text(
                                 'Description',
                                 style: TextStyle(
-                                    fontSize: 15,
+                                    fontSize: 20,
                                     fontWeight: FontWeight.w600,
                                     color: Colors.white),
                               ),

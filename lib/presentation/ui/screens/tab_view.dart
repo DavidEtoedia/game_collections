@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:game_collections/presentation/ui/cubit/appstate_cubit.dart';
 import 'package:game_collections/presentation/ui/widget/list%20widget/list_view_widget.dart';
+import 'package:game_collections/presentation/ui/widget/purchase%20view/purchased_grid_view.dart';
+import 'package:game_collections/presentation/ui/widget/purchase%20view/purchased_list_view.dart';
 import 'package:game_collections/presentation/util/space_util.dart';
 import '../widget/list widget/grid_list_widget.dart';
 
@@ -166,12 +168,13 @@ class _NewTabViewState extends State<NewTabView> with TickerProviderStateMixin {
                           // color: Colors.grey,
                           child:
                               TabBarView(controller: _tabController, children: [
-                            view == false
-                                ? const GameGridView()
-                                : const GameListView(),
-                            Container(
-                              color: Colors.red,
-                            )
+                            if (view == false) ...[
+                              const GameGridView(),
+                              const PurchasedGridView()
+                            ] else ...[
+                              const GameListView(),
+                              const PurchasedListView()
+                            ]
 
                             // TechTab(),
                           ]),

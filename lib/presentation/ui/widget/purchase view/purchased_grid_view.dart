@@ -5,20 +5,21 @@ import 'package:game_collections/Data/model/games.dart';
 import 'package:game_collections/presentation/ui/Games/gamezz_bloc.dart';
 import 'package:game_collections/presentation/ui/bloc/achievements_bloc.dart';
 import 'package:game_collections/presentation/ui/gameScreenshot/bloc/game_screen_shots_bloc.dart';
+import 'package:game_collections/presentation/ui/purchased/bloc/purchased_games_bloc.dart';
 import 'package:game_collections/presentation/util/app_nav.dart';
 
 import '../../../component/loading_progress.dart';
 import '../../Game detail/bloc/games_details_dart_bloc.dart';
 import '../../screens/game_details_screen.dart';
 
-class GameGridView extends StatefulWidget {
-  const GameGridView({Key? key}) : super(key: key);
+class PurchasedGridView extends StatefulWidget {
+  const PurchasedGridView({Key? key}) : super(key: key);
 
   @override
-  State<GameGridView> createState() => _GameListState();
+  State<PurchasedGridView> createState() => _PurchasedGridViewState();
 }
 
-class _GameListState extends State<GameGridView>
+class _PurchasedGridViewState extends State<PurchasedGridView>
     with AutomaticKeepAliveClientMixin {
   final _scrollController = ScrollController();
 
@@ -27,16 +28,17 @@ class _GameListState extends State<GameGridView>
     super.build(context);
     return Column(
       children: [
-        BlocConsumer<GamezzBloc, GamezzState>(listener: ((context, state) {
-          if (state.status == GamezzStatus.initial) {
+        BlocConsumer<PurchasedGamesBloc, PurchasedGameState>(
+            listener: ((context, state) {
+          if (state.status == PurchasedStatus.initial) {
             ScaffoldMessenger.of(context)
                 .showSnackBar(const SnackBar(content: Text('Lets play baby')));
           }
         }), builder: (_, state) {
           switch (state.status) {
-            case GamezzStatus.failure:
+            case PurchasedStatus.failure:
               return Center(child: Text(state.errorMessage.toString()));
-            case GamezzStatus.success:
+            case PurchasedStatus.success:
               if (state.result.isEmpty) {
                 return const Center(child: Text('no posts'));
               }
@@ -92,7 +94,7 @@ class _GameListState extends State<GameGridView>
     _scrollController.addListener(() {
       if (_scrollController.position.atEdge) {
         if (_scrollController.position.pixels != 0) {
-          context.read<GamezzBloc>().add(GamezzFetch());
+          context.read<PurchasedGamesBloc>().add(FetchPurchased());
         }
       }
     });
